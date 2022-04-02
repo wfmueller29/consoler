@@ -1,5 +1,5 @@
 
-ls2 <- function(){
+peek <- function(){
   env_objs <- ls(envir = .GlobalEnv)
   name <- env_objs
   class <- get_ats(env_objs, "class", ", ")
