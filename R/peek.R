@@ -1,33 +1,33 @@
+#' Peek at Envs or Lists
+#' 
+#' Outputs a dataframe with name, class, length, dim for easy peeking at 
+#' workspace using the console
+#'
+#' @param x environment or list that we would like to peak. Default is the
+#' global environment
 
-peek <- function(){
-  env_objs <- ls(envir = .GlobalEnv)
+peek <- function(x = .GlobalEnv) {
+  env_objs <- ls(x)
   name <- env_objs
-  class <- get_ats(env_objs, "class", ", ")
-  len <- get_ats(env_objs, "length")
-  dim <- get_ats(env_objs, "dim", " x ")
+  class <- get_ats(env_objs, "class", x, ", ")
+  len <- get_ats(env_objs, "length", x)
+  dim <- get_ats(env_objs, "dim", x, " x ")
   df <- data.frame(
     name = name,
     class = class,
-    length =  len, 
+    length = len,
     dim = dim
   )
-  print(df, row.names = F)
+  df
 }
 
-get_ats <- function(objs, fun, collapse = "") {
+get_ats <- function(objs, fun, x, collapse = "") {
   ats <- sapply(objs, function(obj) {
-    at <- eval(call(fun, as.symbol(obj)))
+    obj <- call("$", x, obj)
+    at <- eval(call(fun, obj))
     c_at <- paste(at, collapse = collapse)
     c_at
   }, USE.NAMES = F)
   ats
 }
 
-
-
-cat_ls_env <- function(df) {
-  maxl_name <- max(sapply(df$name, nchar))
-  maxl_class <- max(sapply(df$class, nchar))
-  maxl_length <- max(sapply(df$length, nchar))
-  maxl_dim <- max(sapply(df$dim, nchar))
-}
