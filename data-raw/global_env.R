@@ -2,33 +2,32 @@
 
 global_env <- new.env()
 
-## attach new global_env
-attach(global_env)
-
 # dataframe
-shop <- data.frame(
-  quantity = c(0, 1, 3, 4),
-  item = c("apples", "oj", "banana", "milk"),
-  available = c(TRUE, FALSE, TRUE, TRUE)
+global_env$shop <- data.frame(
+  quantity = c(0, 1, 3, NA, 4),
+  item = c("apples", "oj", "fruit", "banana", "milk"),
+  available = c(TRUE, FALSE, FALSE, TRUE, TRUE)
 )
 # list with nested list
-todo <- list("buy milk",
+global_env$todo <- list("buy milk",
   "do laundry",
   homework = list("math", "physics", "english"),
   "do taxes"
 )
 
 # numeric
-quantity <- shop$quantity
+global_env$quantity <- global_env$shop$quantity
 
 # character
-item <- shop$item
+global_env$item <- global_env$shop$item
 
 # logical
-available <- shop$available
+global_env$available <- global_env$shop$available
 
+# formula
+global_env$form <- y ~ x + z
 
-# detach env
-detach(global_env)
+# symbol
+global_env$sym <- as.symbol("variable_name")
 
 usethis::use_data(global_env, overwrite = TRUE)
