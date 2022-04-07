@@ -5,6 +5,7 @@
 #'
 #' @param x environment or list that we would like to peak. Default is the
 #' global environment
+#' @export
 
 peek <- function(x = .GlobalEnv) {
   env_objs <- ls(x)
