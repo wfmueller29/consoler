@@ -1,5 +1,6 @@
 # peek() works on envs
 
+    Class: environment
            name      class length   dim
     1 available    logical      5      
     2      form    formula      3      
@@ -12,6 +13,7 @@
 
 # peek works on lists too
 
+    Class: data.frame
            name     class length dim
     1  quantity   numeric      5    
     2      item character      5    
@@ -19,6 +21,7 @@
 
 # peek() works on partial named lists
 
+    Class: list
           name     class length dim
     1        1 character      1    
     2        2 character      1    
@@ -27,6 +30,7 @@
 
 # peek() works on unnamed lists
 
+    Class: list
       name     class length dim
     1    1 character      1    
     2    2 character      1    

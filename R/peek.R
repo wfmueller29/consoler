@@ -32,6 +32,8 @@ peek <- function(x = .GlobalEnv) {
     length = len,
     dim = dim
   )
+  cat("Class:", class(x))
+  cat("\n")
   df
 }
 
