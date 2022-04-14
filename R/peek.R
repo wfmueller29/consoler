@@ -8,7 +8,18 @@
 #' @export
 
 peek <- function(x = .GlobalEnv) {
-  env_objs <- ls(x)
+  if ("" %in% names(x)) {
+    unnamed_indices <- which(names(x) %in% "")
+    for (i in seq_along(unnamed_indices)) {
+      index <- unnamed_indices[[i]]
+      names(x)[[index]] <- as.character(unnamed_indices[[i]])
+    }
+  }
+  if (is.list(x)) {
+    env_objs <- names(x)
+  } else if (is.environment(x)) {
+    env_objs <- ls(x)
+  } else stop("x must be environment, list, or dataframe")
   name <- env_objs
   class <- get_ats(env_objs, "class", x, ", ")
   len <- get_ats(env_objs, "length", x)
