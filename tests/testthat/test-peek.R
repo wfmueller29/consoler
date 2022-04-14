@@ -23,8 +23,14 @@ test_that("peek() output is dataframe", {
   )
 })
 
-test_that("peek() works on unnamed lists", {
+test_that("peek() works on partial named lists", {
   testthat::expect_snapshot_output(
     peek(global_env$todo)
+  )
+})
+
+test_that("peek() works on unnamed lists", {
+  testthat::expect_snapshot_output(
+    peek(global_env$hw)
   )
 })

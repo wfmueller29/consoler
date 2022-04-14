@@ -15,6 +15,9 @@ global_env$todo <- list("buy milk",
   "do taxes"
 )
 
+# unnamed list
+global_env$hw <- global_env$todo$homework
+
 # numeric
 global_env$quantity <- global_env$shop$quantity
 

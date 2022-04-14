@@ -14,6 +14,8 @@ peek <- function(x = .GlobalEnv) {
       index <- unnamed_indices[[i]]
       names(x)[[index]] <- as.character(unnamed_indices[[i]])
     }
+  } else if (is.null(names(x))) {
+    names(x) <- as.character(seq_along(x))
   }
   if (is.list(x)) {
     env_objs <- names(x)
